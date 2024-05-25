@@ -52,11 +52,20 @@ public class MaintenanceSystem extends Vehicle implements MaintenanceActivity, M
         System.out.println("Vehicle mileage tracked for " + vehicleId + ": " + mileage);
     }
 
-    @Override
+    
+        //changes in maintenance report generation 
+        @Override
     public void generateMaintenanceReport(String vehicleId) {
+        // Get repair status for the vehicle
         List<String> repairStatus = repairStatusMap.getOrDefault(vehicleId, new ArrayList<>());
+        
+        // Calculate next maintenance mileage
+        double nextMaintenanceMileage = mileageMap.getOrDefault(vehicleId, 0.0) + 3000.0;
+        
+        // Print maintenance report along with repair status and next maintenance mileage
         System.out.println("Maintenance report for vehicle " + vehicleId + ":");
         System.out.println("Repair Status: " + repairStatus);
+        System.out.println("Next maintenance mileage: " + nextMaintenanceMileage);
     }
 
     @Override
