@@ -45,6 +45,18 @@ public class MaintenanceSystem extends Vehicle implements MaintenanceActivity, M
     public void monitorSparePartsAvailability() {
         System.out.println("Monitoring spare parts availability...");
     }
+        
+        @Override
+public void trackRepairStatus(String vehicleId) {
+    // Get repair status for the vehicle
+    List<String> repairStatus = repairStatusMap.getOrDefault(vehicleId, new ArrayList<>());
+    
+    // Check if there are ongoing repairs
+    String statusMessage = repairStatus.isEmpty() ? "No ongoing repairs" : "Ongoing maintenance: " + repairStatus;
+    
+    // Print repair status message
+    System.out.println(statusMessage);
+}
 
     @Override
     public void trackVehicleMileage(String vehicleId, double mileage) {
@@ -81,9 +93,5 @@ public class MaintenanceSystem extends Vehicle implements MaintenanceActivity, M
         System.out.println("Tracking warranty information for vehicle " + vehicleId);
     }
 
-    @Override
-    public void trackRepairStatus(String vehicleId) {
-        List<String> repairStatus = repairStatusMap.getOrDefault(vehicleId, new ArrayList<>());
-        System.out.println("Repair status for vehicle " + vehicleId + ": " + repairStatus);
-    }
+    
 }
